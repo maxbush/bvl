@@ -603,7 +603,6 @@ export default function Home() {
                     loading="lazy"
                   />
                 </picture>
-                <figcaption className="mono">Вычислительный контур и стойки ЦОД «Поток» (схема)</figcaption>
               </figure>
             </div>
             <div>
