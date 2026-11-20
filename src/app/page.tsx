@@ -1,4 +1,3 @@
-import Cycle from "@/components/Cycle";
 import IndustryDrawer from "@/components/IndustryDrawer";
 import LeadForm from "@/components/LeadForm";
 import MobileNav from "@/components/MobileNav";
@@ -350,13 +349,13 @@ export default function Home() {
           <div className="wrap">
             <div className="hero-grid">
               <div>
+                <p className="hero-eyebrow mono">Системный интегратор · Минск · с 1996 года</p>
                 <h1 id="hero-title" className="h1">
-                  Системный интегратор для предприятий, которым нельзя останавливаться
+                  ИТ-инфраструктура и защита данных для предприятий, которым нельзя останавливаться
                 </h1>
                 <p className="lead">
-                  С 1996 года Bevalex проектирует, внедряет и сопровождает <span className="nowrap">IT-инфраструктуру</span>,
-                  информационную безопасность и облачные сервисы для крупного бизнеса
-                  и госструктур Беларуси.
+                  Bevalex проектирует, строит и сопровождает отказоустойчивые контуры
+                  под ключ — для крупного бизнеса и госструктур Беларуси.
                 </p>
                 <div className="hero-ctas">
                   <a href="#contact" className="btn btn-primary">
@@ -366,16 +365,36 @@ export default function Home() {
                   <a href="#projects" className="btn btn-line">
                     Наши проекты
                   </a>
+                  <a href={`${BASE}/bevalex-presentation.pdf`} className="link hero-deck" download>
+                    Презентация PDF ↓
+                  </a>
                 </div>
-                <p className="hero-meta">
-                  Среди заказчиков — <strong>Нацбанк РБ, Белтелеком, Аппарат Совмина, Беларуськалий, EPAM</strong>
+                <p className="hero-meta mono">
+                  Нацбанк РБ · Белтелеком · Аппарат Совмина · Беларуськалий · EPAM
                 </p>
-                <a href={`${BASE}/bevalex-presentation.pdf`} className="link hero-deck" download>
-                  Скачать презентацию (PDF, 3,6 МБ) ↓
-                </a>
               </div>
               <div className="hero-figure">
-                <Cycle />
+                <div className="passport" aria-label="Ключевые активы Bevalex">
+                  <p className="passport-kicker mono">инженерный паспорт</p>
+                  <dl className="passport-list">
+                    <div>
+                      <dt>Собственный ЦОД «Поток»</dt>
+                      <dd>SLA 99.9% — облако и colocation в Минске</dd>
+                    </div>
+                    <div>
+                      <dt>Лицензии ОАЦ и МВД</dt>
+                      <dd>аттестация СЗИ, защита КИИ, ПАК «Цитадель»</dd>
+                    </div>
+                    <div>
+                      <dt>Собственное производство</dt>
+                      <dd>серверы и СХД БЕВАЛЕКС белорусской сборки</dd>
+                    </div>
+                    <div>
+                      <dt>Корпоративный AI on-premise</dt>
+                      <dd>пилот на документах заказчика за 4–8 недель</dd>
+                    </div>
+                  </dl>
+                </div>
               </div>
             </div>
 
