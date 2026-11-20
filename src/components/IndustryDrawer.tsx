@@ -29,25 +29,27 @@ export default function IndustryDrawer({ industries }: { industries: Industry[] 
 
   return (
     <>
-      <dl className="ledger industries">
-        {industries.map((i) => (
-          <div className="ledger-row" key={i.name}>
-            <dt>{i.name}</dt>
-            <dd>
-              <span className="ind-clients">{i.clients}</span>
-              {i.projects.length > 0 && (
-                <button
-                  type="button"
-                  className="ind-link mono"
-                  onClick={() => setOpen(i)}
-                >
-                  {i.projects.length} {plural(i.projects.length)} →
-                </button>
-              )}
-            </dd>
-          </div>
+      <div className="ind-grid" role="list" aria-label="Отрасли и заказчики">
+        {industries.map((i, idx) => (
+          <button
+            key={i.name}
+            type="button"
+            role="listitem"
+            className="ind-card"
+            onClick={() => setOpen(i)}
+            aria-label={`${i.name}: открыть список проектов (${i.projects.length})`}
+          >
+            <span className="ind-card-top">
+              <span className="ind-idx mono num">0{idx + 1}</span>
+              <span className="ind-pill mono num">
+                {i.projects.length} {plural(i.projects.length)} →
+              </span>
+            </span>
+            <span className="ind-title">{i.name}</span>
+            <span className="ind-clients">{i.clients}</span>
+          </button>
         ))}
-      </dl>
+      </div>
 
       {open && (
         <div
@@ -64,7 +66,7 @@ export default function IndustryDrawer({ industries }: { industries: Industry[] 
           >
             <header className="drawer-head">
               <div>
-                <span className="drawer-kicker mono">архив проектов</span>
+                <span className="drawer-kicker mono">открытый архив проектов</span>
                 <h3 className="drawer-title">{open.name}</h3>
               </div>
               <button
@@ -83,9 +85,11 @@ export default function IndustryDrawer({ industries }: { industries: Industry[] 
               ))}
             </ul>
             <footer className="drawer-foot">
-              <p className="mono">это часть архива — в портфолио 1210+ проектов</p>
+              <p className="mono">
+                показана открытая часть архива без NDA — всего в портфолио 1210+ внедрений
+              </p>
               <a href="#contact" className="btn btn-primary btn-sm" onClick={close}>
-                Запросить кейсы по отрасли
+                Запросить референсы по отрасли
                 <span className="arrow" aria-hidden="true">→</span>
               </a>
             </footer>

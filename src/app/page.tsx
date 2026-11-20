@@ -15,86 +15,71 @@ const NAV = [
 ];
 
 const CLIENT_STRIP: { n: string; logo: string; h: number; caseId?: string }[] = [
-  { n: "Беларусбанк", logo: "/clients/belarusbank.svg", h: 30 },
-  { n: "Белагропромбанк", logo: "/clients/belapb.svg", h: 34, caseId: "case-belapb" },
-  { n: "Белтелеком", logo: "/clients/beltelecom.svg", h: 26, caseId: "case-beltelecom" },
-  { n: "МТС", logo: "/clients/mts.svg", h: 26 },
-  { n: "A1", logo: "/clients/a1.svg", h: 32 },
-  { n: "Белоруснефть", logo: "/clients/belorusneft.svg", h: 30 },
+  { n: "Беларусбанк", logo: "/clients/belarusbank.svg", h: 19 },
+  { n: "Белагропромбанк", logo: "/clients/belapb.svg", h: 29, caseId: "case-belapb" },
+  { n: "Белтелеком", logo: "/clients/beltelecom.svg", h: 22, caseId: "case-beltelecom" },
+  { n: "МТС", logo: "/clients/mts.svg", h: 18 },
+  { n: "A1", logo: "/clients/a1.svg", h: 26 },
+  { n: "Белоруснефть", logo: "/clients/belorusneft.svg", h: 28 },
 ];
 
 export type Industry = { name: string; clients: string; projects: string[] };
 
 const INDUSTRIES: Industry[] = [
   {
-    name: "Госсектор",
+    name: "Госуправление и регуляторы",
     clients: "Аппарат Совмина, Минобороны, Минсвязи, Минюст, КГБ, Генштаб ВС, Нацстатком, БУТБ",
     projects: [
       "Аппарат Совета Министров РБ — подсистемы делопроизводства и контроля исполнения поручений",
-      "ИТ-инфраструктура единой системы госстатистики Республики Беларусь",
+      "ИТ-инфраструктура единой системы государственной статистики Республики Беларусь",
       "Электронные госзакупки — ИТ-инфраструктура центра обработки данных",
-      "Белорусская универсальная товарная биржа — защита удостоверяющего центра",
+      "Белорусская универсальная товарная биржа — система защиты удостоверяющего центра",
       "ГИАЦ Минобразования — межсетевое экранирование Check Point NGFW",
-      "Нацстатком — мультимедийный конференц-зал",
-      "Аналитическая система информационного агентства Вооружённых сил",
+      "Нацстатком РБ — мультимедийный комплекс конференц-зала",
+      "Военное информационное агентство ВС РБ «Ваяр» — автоматизированная аналитическая система",
     ],
   },
   {
-    name: "Банки и финансы",
-    clients: "Нацбанк РБ, Беларусбанк, Белагропромбанк, Белинвестбанк, МТБанк, Альфа-Банк, Банк БелВЭБ, БПС-Сбербанк",
+    name: "Банки и финансовый сектор",
+    clients: "Нацбанк РБ, Беларусбанк, Белагропромбанк, Белинвестбанк, Банк БелВЭБ, Альфа-Банк, МТБанк, Сбер Банк",
     projects: [
-      "Белагропромбанк — резервный ЦОД, СЭД, климат-контроль, потоки клиентов",
-      "Белинвестбанк — SIEM, распределённая СЭД, Service Desk",
-      "БПС-Сбербанк — автоматизированная система Service Desk",
+      "Расчётный центр Национального банка РБ — комплексная инженерная система резервного ЦОД",
+      "Белагропромбанк — резервный ЦОД с комнатой безопасности C60D, СЭД, климат-контроль",
+      "Белинвестбанк — система управления событиями ИБ (SIEM), распределённая СЭД, Service Desk",
+      "БПС-Сбербанк — автоматизированная система управления ИТ-услугами Service Desk",
     ],
   },
   {
-    name: "Телеком",
+    name: "Телеком и операторы связи",
     clients: "Белтелеком, МТС, A1, Белпочта",
     projects: [
-      "Белтелеком — AntiDDoS «Периметр» для национальной сети",
-      "Белтелеком — ИТ-инфраструктура центра предоставления услуг",
+      "РУП «Белтелеком» — внедрение и сопровождение АПК защиты от DDoS-атак «Периметр»",
+      "РУП «Белтелеком» — ИТ-инфраструктура центра предоставления электронных услуг",
     ],
   },
   {
-    name: "Промышленность",
-    clients: "Беларуськалий, БЕЛАЗ, Нафтан, Белшина, Милавица, «Молоко»",
+    name: "Промышленность и ТЭК",
+    clients: "Беларуськалий, БЕЛАЗ, Белоруснефть, Нафтан, Белэнерго, Белтопгаз, ОДУ, Белшина, Милавица",
     projects: [
-      "Милавица — система обеспечения информационной безопасности",
-      "Санта Бремор — доменная структура группы компаний",
+      "РУП «ОДУ» — инженерная инфраструктура серверной и модернизация корпоративной ЛВС",
+      "СП ЗАО «Милавица» — комплексная система обеспечения информационной безопасности",
+      "Группа компаний «Санта Бремор» — единая отказоустойчивая доменная инфраструктура",
     ],
   },
   {
-    name: "ТЭК и энергетика",
-    clients: "Белоруснефть, Белэнерго, Белтопгаз, ОДУ, Запад-Транснефтепродукт",
+    name: "Здравоохранение и образование",
+    clients: "Минздрав РБ, РНПЦ «Мать и дитя», РНПЦ трансплантации, РНПЦ неврологии и нейрохирургии, БГУИР, Военная академия",
     projects: [
-      "РУП «ОДУ» — инженерная инфраструктура серверной и модернизация ЛВС",
+      "РНПЦ «Мать и дитя» — медицинская автоматизированная информационная система",
+      "РНПЦ «Трансплантации органов и тканей» — медицинская АИС клиники",
+      "РНПЦ «Неврологии и нейрохирургии» — медицинская автоматизированная система",
     ],
   },
   {
-    name: "Транспорт",
-    clients: "Белорусская железная дорога, Белавиа",
-    projects: [],
-  },
-  {
-    name: "Медицина и здравоохранение",
-    clients: "Минздрав РБ, РНПЦ «Мать и дитя», РНПЦ трансплантации органов и тканей, РНПЦ неврологии и нейрохирургии",
+    name: "IT, транспорт и крупный бизнес",
+    clients: "EPAM, Белорусская железная дорога, Белавиа, Евроторг, «Патио», FENOX",
     projects: [
-      "РНПЦ «Мать и дитя» — медицинская автоматизированная система",
-      "РНПЦ «Трансплантации органов и тканей» — медицинская АИС",
-      "РНПЦ «Неврологии и нейрохирургии» — медицинская АИС",
-    ],
-  },
-  {
-    name: "Образование",
-    clients: "БГУИР, Военная академия РБ, БГЭУ",
-    projects: [],
-  },
-  {
-    name: "Частный бизнес и ритейл",
-    clients: "EPAM, Евроторг, «Патио», FENOX",
-    projects: [
-      "EPAM — инженерная инфраструктура центра обработки данных",
+      "ИООО «Эпам Системз» — проектирование и создание инженерной инфраструктуры ЦОД",
     ],
   },
 ];
@@ -358,26 +343,38 @@ export default function Home() {
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="wrap">
             <div className="hero-grid">
-              <div>
+              <div className="hero-copy">
+                <p className="hero-eyebrow mono">
+                  <span className="eyebrow-dot" aria-hidden="true" />
+                  Системный интегратор полного цикла · Минск, Беларусь
+                </p>
                 <h1 id="hero-title" className="h1">
-                  Системный интегратор для предприятий, которым нельзя останавливаться
+                  ИТ-инфраструктура, ЦОД и защита информации для ключевых отраслей Беларуси
                 </h1>
                 <p className="lead">
-                  С 1996 года Bevalex проектирует, внедряет и сопровождает <span className="nowrap">IT-инфраструктуру</span>,
-                  информационную безопасность и облачные сервисы для крупного бизнеса
-                  и госструктур Беларуси.
+                  СП «Бевалекс» ООО проектирует, строит и сопровождает отказоустойчивые
+                  вычислительные комплексы, сети и контуры кибербезопасности под ключ.
+                  В собственном контуре — ЦОД «Поток» (SLA 99.9%), серверное производство
+                  и лицензии ОАЦ и МВД.
                 </p>
                 <div className="hero-ctas">
                   <a href="#contact" className="btn btn-primary">
-                    Оставить заявку
+                    Обсудить задачу
                     <span className="arrow" aria-hidden="true">→</span>
                   </a>
                   <a href="#projects" className="btn btn-line">
-                    Наши проекты
+                    Проекты и кейсы
+                  </a>
+                  <a
+                    href={`${BASE}/bevalex-presentation.pdf`}
+                    className="link hero-deck"
+                    download
+                  >
+                    Презентация PDF ↓
                   </a>
                 </div>
-
               </div>
+
               <div className="hero-figure">
                 <Cycle />
               </div>
@@ -385,24 +382,26 @@ export default function Home() {
 
             <dl className="stats" aria-label="Bevalex в цифрах">
               <div className="stat">
-                <dt>год начала работы</dt>
+                <dt>год основания компании</dt>
                 <dd className="num">1996</dd>
               </div>
               <div className="stat">
-                <dt>успешных проектов</dt>
+                <dt>реализованных проектов</dt>
                 <dd className="num">
                   1210<sup>+</sup>
                 </dd>
               </div>
               <div className="stat">
-                <dt>сертификатов и лицензий, включая ОАЦ</dt>
+                <dt>лицензий и сертификатов, включая ОАЦ и МВД</dt>
                 <dd className="num">
                   80<sup>+</sup>
                 </dd>
               </div>
               <div className="stat">
-                <dt>специалистов уровня L1–L3</dt>
-                <dd className="num">~70</dd>
+                <dt>штатных инженеров уровней L1–L3</dt>
+                <dd className="num">
+                  70<sup>+</sup>
+                </dd>
               </div>
             </dl>
           </div>
@@ -412,89 +411,105 @@ export default function Home() {
         <section className="section" id="projects" aria-labelledby="projects-title">
           <div className="wrap">
             <div className="section-head">
-              <h2 id="projects-title" className="h2">
-                Нам доверяют госсектор, банки, телеком и промышленность
-              </h2>
+              <div>
+                <p className="section-kicker mono">
+                  Портфолио · 37 задокументированных кейсов в открытом архиве
+                </p>
+                <h2 id="projects-title" className="h2">
+                  Работаем там, где цена сбоя — масштаб отрасли или страны
+                </h2>
+              </div>
               <p className="lead">
-                Среди заказчиков — госорганизации, банки, операторы связи,
-                промышленные холдинги, IT-компании и медицинские центры.
+                За три десятилетия построили и защитили критические контуры для государственных
+                ведомств, системообразующих банков, национальных операторов связи и промышленных
+                флагманов Беларуси.
               </p>
             </div>
 
-            <ul className="client-strip">
-              {CLIENT_STRIP.map((c) => (
-                <li key={c.n}>
-                  {c.caseId ? (
-                    <a href={`#${c.caseId}`} className="client-strip-link" title={`${c.n} — кейс`}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="client-bar" aria-label="Знаковые заказчики">
+              <span className="client-bar-label mono">Знаковые заказчики</span>
+              <ul className="client-strip">
+                {CLIENT_STRIP.map((c) => (
+                  <li key={c.n}>
+                    {c.caseId ? (
+                      <a href={`#${c.caseId}`} className="client-strip-link" title={`${c.n} — перейти к кейсу`}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
+                      </a>
+                    ) : (
+                      /* eslint-disable-next-line @next/next/no-img-element */
                       <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
-                    </a>
-                  ) : (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
-                  )}
-                </li>
-              ))}
-            </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-            <p className="industries-kicker mono">География проектов по отраслям</p>
-            <IndustryDrawer industries={INDUSTRIES} />
-            <article className="case-feature" id={CASES[0].id}>
-              <div className="case-feature-main">
-                <span className="case-tag mono">ЦОД · впервые в Беларуси</span>
-                <h3 className="case-feature-title">
-                  Резервный ЦОД для Белагропромбанка
-                </h3>
-                <p className="case-feature-lead">
-                  Спроектировали и сдали в промышленную эксплуатацию резервный центр
-                  обработки данных с комнатой физической безопасности — первый проект
-                  такого класса в стране. Защита оборудования от огня, воды
-                  и электромагнитного излучения.
+            <div className="ind-block">
+              <div className="ind-block-head">
+                <p className="industries-kicker mono">Отраслевая практика</p>
+                <p className="ind-block-hint">
+                  Нажмите на отрасль, чтобы открыть перечень реализованных проектов
                 </p>
               </div>
-              <dl className="case-feature-facts">
-                <div>
-                  <dt className="num">2(N+1)</dt>
-                  <dd>резервирование питания</dd>
-                </div>
-                <div>
-                  <dt className="num">2N</dt>
-                  <dd>резервирование охлаждения</dd>
-                </div>
-                <div>
-                  <dt className="num">C60D</dt>
-                  <dd>защита по EN 1047-2</dd>
-                </div>
-                <div>
-                  <dt className="num">F120</dt>
-                  <dd>огнестойкость DIN 4102-2</dd>
-                </div>
-                <div>
-                  <dt className="num">HDI-Gerling</dt>
-                  <dd>страховка рисков</dd>
-                </div>
-              </dl>
-            </article>
+              <IndustryDrawer industries={INDUSTRIES} />
+            </div>
 
-            <dl className="ledger cases">
-              {CASES.slice(1).map((c) => (
-                <div className="ledger-row" key={c.client} id={c.id}>
-                  <dt>
-                    <span className="case-tag mono">{c.tag}</span>
-                    <span className="case-client">{c.client}</span>
-                  </dt>
-                  <dd>
+            <div className="cases-showcase">
+              <article className="case-feature" id={CASES[0].id}>
+                <div className="case-feature-main">
+                  <span className="case-tag mono">Флагманский кейс · ЦОД · впервые в Беларуси</span>
+                  <h3 className="case-feature-title">
+                    Резервный ЦОД с комнатой безопасности для Белагропромбанка
+                  </h3>
+                  <p className="case-feature-lead">
+                    Выполнили полный цикл проектирования и сдали в промышленную эксплуатацию
+                    резервный дата-центр банка с модульной комнатой физической безопасности —
+                    первый проект такого класса в стране. Контур защищает хранилища данных от
+                    пожара, затопления, взлома и электромагнитного излучения (13–65 дБ).
+                  </p>
+                </div>
+                <dl className="case-feature-facts">
+                  <div>
+                    <dt className="num">2(N+1)</dt>
+                    <dd>резервирование питания ИБП (2N по холоду)</dd>
+                  </div>
+                  <div>
+                    <dt className="num">C60D</dt>
+                    <dd>класс защиты хранилища по EN 1047-2</dd>
+                  </div>
+                  <div>
+                    <dt className="num">F120</dt>
+                    <dd>предел огнестойкости по DIN 4102-2</dd>
+                  </div>
+                  <div>
+                    <dt className="num">до €10 млн</dt>
+                    <dd>страховое покрытие рисков в HDI-Gerling</dd>
+                  </div>
+                </dl>
+              </article>
+
+              <div className="case-cards">
+                {CASES.slice(1).map((c, idx) => (
+                  <article className="case-card" key={c.client} id={c.id}>
+                    <div className="case-card-top">
+                      <span className="case-tag mono">{c.tag}</span>
+                      <span className="case-card-idx mono num">0{idx + 2}</span>
+                    </div>
+                    <h3 className="case-client">{c.client}</h3>
                     <p className="case-scope">{c.scope}</p>
                     <p className="case-fact num">{c.fact}</p>
-                  </dd>
-                </div>
-              ))}
-            </dl>
+                  </article>
+                ))}
+              </div>
+            </div>
 
             <div className="ledger-foot">
-              <span>В портфолио — 37 задокументированных проектов. Названия компаний принадлежат их владельцам.</span>
+              <span>
+                В открытом архиве — 37 задокументированных кейсов из 1210+ проектов. Товарные знаки принадлежат их правообладателям.
+              </span>
               <a href="#contact" className="link" style={{ color: "var(--ink)", fontWeight: 500 }}>
-                Запросить кейсы по вашей отрасли →
+                Запросить референсы по вашей отрасли →
               </a>
             </div>
           </div>
@@ -516,7 +531,7 @@ export default function Home() {
                 <figure className="review" key={r.org}>
                   <ScanView src={BASE + r.scan} org={r.org} />
                   <blockquote>
-                    <p>«{r.quote}»</p>
+                    <p>«{r.quote}».</p>
                   </blockquote>
                   <figcaption>
                     <b>{r.org}</b>
@@ -589,7 +604,6 @@ export default function Home() {
                     media="(max-width: 640px)"
                     srcSet={`${BASE}/images/server-infrastructure-mobile.webp`}
                   />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={`${BASE}/images/server-infrastructure.webp`}
                     alt="Схематичная иллюстрация серверных стоек в изометрии"
