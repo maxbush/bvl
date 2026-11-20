@@ -419,23 +419,25 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="client-bar" aria-label="Знаковые заказчики">
-              <span className="client-bar-label mono">Знаковые заказчики</span>
-              <ul className="client-strip">
-                {CLIENT_STRIP.map((c) => (
-                  <li key={c.n}>
-                    {c.caseId ? (
-                      <a href={`#${c.caseId}`} className="client-strip-link" title={`${c.n} — перейти к кейсу`}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
-                      </a>
-                    ) : (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
-                    )}
-                  </li>
-                ))}
-              </ul>
+            <div className="client-bar" aria-label="Заказчики">
+              <span className="client-bar-label mono">Заказчики</span>
+              <div className="marquee">
+                <ul className="client-strip marquee-track">
+                  {[...CLIENT_STRIP, ...CLIENT_STRIP].map((c, i) => (
+                    <li key={`${c.n}-${i}`} aria-hidden={i >= CLIENT_STRIP.length || undefined}>
+                      {c.caseId ? (
+                        <a href={`#${c.caseId}`} className="client-strip-link" title={`${c.n} — перейти к кейсу`} tabIndex={i >= CLIENT_STRIP.length ? -1 : 0}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={BASE + c.logo} alt={i >= CLIENT_STRIP.length ? "" : c.n} loading="lazy" style={{ height: c.h }} />
+                        </a>
+                      ) : (
+                        /* eslint-disable-next-line @next/next/no-img-element */
+                        <img src={BASE + c.logo} alt={i >= CLIENT_STRIP.length ? "" : c.n} loading="lazy" style={{ height: c.h }} />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <div className="ind-block">

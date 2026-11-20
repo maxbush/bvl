@@ -1389,9 +1389,38 @@ body::before {
   margin: 0;
   padding: 0;
 }
-@media (max-width: 760px) {
-  .client-strip {
-    justify-content: flex-start;
+/* marquee variant: continuous loop, duplicated list in markup */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+}
+.marquee-track {
+  width: max-content;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 0;
+  animation: marquee-x 30s linear infinite;
+}
+.marquee-track li {
+  padding-right: clamp(40px, 5vw, 72px);
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-x {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none !important;
   }
 }
 .client-strip li {
