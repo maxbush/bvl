@@ -846,6 +846,15 @@ body {
   font-weight: 500;
   text-align: right;
 }
+@media (max-width: 640px) {
+  .spec div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .spec dd {
+    text-align: left;
+  }
+}
 .dc .btn-line {
   border-color: rgba(233, 236, 239, 0.6);
   color: var(--dark-text);
