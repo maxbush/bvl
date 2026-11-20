@@ -365,13 +365,6 @@ export default function Home() {
                   <a href="#projects" className="btn btn-line">
                     Проекты и кейсы
                   </a>
-                  <a
-                    href={`${BASE}/bevalex-presentation.pdf`}
-                    className="link hero-deck"
-                    download
-                  >
-                    Презентация PDF ↓
-                  </a>
                 </div>
               </div>
 

@@ -464,12 +464,7 @@ body {
   gap: 12px 14px;
   margin-top: 34px;
 }
-.hero-deck {
-  font-size: 14.5px;
-  color: var(--ink-2);
-  margin-left: 6px;
-  white-space: nowrap;
-}
+
 
 .stats {
   margin-top: clamp(36px, 4.5vw, 56px);
@@ -534,10 +529,6 @@ body {
 @media (max-width: 480px) {
   .hero-ctas .btn {
     flex: 1 1 100%;
-  }
-  .hero-deck {
-    margin-left: 0;
-    margin-top: 4px;
   }
 }
 
