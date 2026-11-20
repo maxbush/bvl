@@ -376,12 +376,7 @@ export default function Home() {
                     Наши проекты
                   </a>
                 </div>
-                <p className="hero-meta">
-                  Среди заказчиков — <strong>Нацбанк РБ, Белтелеком, Аппарат Совмина, Беларуськалий, EPAM</strong>
-                </p>
-                <a href={`${BASE}/bevalex-presentation.pdf`} className="link hero-deck" download>
-                  Скачать презентацию (PDF, 3,6 МБ) ↓
-                </a>
+
               </div>
               <div className="hero-figure">
                 <Cycle />
