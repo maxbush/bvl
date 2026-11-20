@@ -451,7 +451,7 @@ export default function Home() {
             <div className="cases-showcase">
               <article className="case-feature" id={CASES[0].id}>
                 <div className="case-feature-main">
-                  <span className="case-tag mono">Флагманский кейс · ЦОД · впервые в Беларуси</span>
+                  <span className="case-tag mono">Кейс · ЦОД · впервые в Беларуси · сдан в 2013</span>
                   <h3 className="case-feature-title">
                     Резервный ЦОД с комнатой безопасности для Белагропромбанка
                   </h3>
