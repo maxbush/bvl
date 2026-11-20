@@ -30,6 +30,17 @@ export default function LeadForm() {
     if (state.status !== "idle") statusRef.current?.focus();
   }, [state]);
 
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement).closest?.("a[data-topic]");
+      if (!a) return;
+      const sel = document.getElementById("f-topic") as HTMLSelectElement | null;
+      if (sel) sel.value = (a as HTMLAnchorElement).dataset.topic ?? "";
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   return (
     <form action={action} className="form" noValidate key={k} aria-describedby="form-status">
       <div className="field">

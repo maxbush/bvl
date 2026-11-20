@@ -15,8 +15,10 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE = "https://www.bevalex.by";
 const BASE = process.env.PAGES_BASE ?? "";
+const SITE = BASE
+  ? `https://maxbush.github.io${BASE}`
+  : "https://www.bevalex.by";
 const TITLE = "Bevalex — системный интегратор в Беларуси: ЦОД, защита информации, AI";
 const DESCRIPTION =
   "Системный интегратор с 1996 года. 1210+ проектов для Нацбанка, Белтелекома, Аппарата Совмина, Беларуськалия. ЦОД «Поток» SLA 99.9%, защита информации (лицензия ОАЦ), собственное производство серверов.";
@@ -34,6 +36,7 @@ export const metadata: Metadata = {
     siteName: "Bevalex",
     title: TITLE,
     description: DESCRIPTION,
+    images: [`${BASE}/opengraph-image`],
   },
   twitter: {
     card: "summary_large_image",

@@ -1,4 +1,5 @@
 import Cycle from "@/components/Cycle";
+import IndustryDrawer from "@/components/IndustryDrawer";
 import LeadForm from "@/components/LeadForm";
 import MobileNav from "@/components/MobileNav";
 import ScanView from "@/components/ScanView";
@@ -13,83 +14,115 @@ const NAV = [
   { href: "#ai", label: "AI-ассистенты" },
 ];
 
-const CLIENT_WALL: { n: string; logo: string; caseId?: string }[] = [
-  { n: "Беларусбанк", logo: "/clients/belarusbank.png" },
-  { n: "Белагропромбанк", logo: "/clients/belapb.svg", caseId: "case-belapb" },
-  { n: "Белинвестбанк", logo: "/clients/belinvestbank.png" },
-  { n: "БПС-Сбербанк", logo: "/clients/bps.ico" },
-  { n: "Белтелеком", logo: "/clients/beltelecom.svg", caseId: "case-beltelecom" },
-  { n: "МТС", logo: "/clients/mts-color.png" },
-  { n: "A1", logo: "/clients/a1.svg" },
+const CLIENT_WALL: { n: string; logo?: string; tag: string; caseId?: string }[] = [
+  { n: "Беларусбанк", logo: "/clients/belarusbank.svg", tag: "банк" },
+  { n: "Белагропромбанк", logo: "/clients/belapb.svg", tag: "банк", caseId: "case-belapb" },
+  { n: "Белтелеком", logo: "/clients/beltelecom.svg", tag: "телеком", caseId: "case-beltelecom" },
+  { n: "МТС", logo: "/clients/mts.svg", tag: "телеком" },
+  { n: "A1", logo: "/clients/a1.svg", tag: "телеком" },
+  { n: "Белоруснефть", logo: "/clients/belorusneft.svg", tag: "ТЭК" },
+  { n: "Беларуськалий", tag: "промышленность" },
 ];
 
-const INDUSTRIES: { name: string; clients: string; href?: string }[] = [
+export type Industry = { name: string; clients: string; projects: string[] };
+
+const INDUSTRIES: Industry[] = [
   {
-    name: "Телеком",
-    clients: "Белтелеком, МТС, A1",
-    href: "https://www.bevalex.by/projects/telekommunikatsionnye-kompanii/",
+    name: "Госсектор",
+    clients: "Нацбанк РБ, Аппарат Совмина, Минобороны, КГБ, ГИАЦ",
+    projects: [
+      "Аппарат Совета Министров РБ — подсистемы делопроизводства и контроля исполнения поручений",
+      "ИТ-инфраструктура единой системы госстатистики Республики Беларусь",
+      "Электронные госзакупки — ИТ-инфраструктура центра обработки данных",
+      "Белорусская универсальная товарная биржа — защита удостоверяющего центра",
+      "ГИАЦ Минобразования — межсетевое экранирование Check Point NGFW",
+      "Аналитическая система информационного агентства Вооружённых сил",
+    ],
   },
   {
     name: "Банки и финансы",
-    clients: "Нацбанк РБ, Беларусбанк, Белинвестбанк, БПС-Сбербанк",
-    href: "https://www.bevalex.by/projects/banki-i-finansovye-organizatsii/",
+    clients: "Нацбанк РБ, Беларусбанк, Белинвестбанк, Сбер Банк",
+    projects: [
+      "Белагропромбанк — резервный ЦОД, СЭД, климат-контроль, потоки клиентов",
+      "Белинвестбанк — SIEM, распределённая СЭД, Service Desk",
+      "БПС-Сбербанк — автоматизированная система Service Desk",
+    ],
   },
   {
-    name: "Госсектор",
-    clients: "Аппарат Совмина, Минобороны, КГБ, ГИАЦ",
-    href: "https://www.bevalex.by/projects/gosudarstvennye-organizatsii/",
+    name: "Телеком",
+    clients: "Белтелеком, МТС, A1",
+    projects: [
+      "Белтелеком — AntiDDoS «Периметр» для национальной сети",
+      "Белтелеком — ИТ-инфраструктура центра предоставления услуг",
+      "EPAM — инженерная инфраструктура центра обработки данных",
+    ],
   },
   {
     name: "Промышленность",
     clients: "Беларуськалий, Нафтан",
-    href: "https://www.bevalex.by/projects/promyshlennye-predpriyatiya/",
+    projects: [
+      "Милавица — система обеспечения информационной безопасности",
+      "Санта Бремор — доменная структура группы компаний",
+    ],
   },
   {
     name: "Энергетика",
     clients: "Белоруснефть",
-    href: "https://www.bevalex.by/projects/energeticheskie-kompanii/",
+    projects: [
+      "РУП «ОДУ» — инженерная инфраструктура серверной и модернизация ЛВС",
+    ],
   },
   {
     name: "Медицина",
     clients: "РНПЦ",
-    href: "https://www.bevalex.by/projects/meditsinskie-organizatsii/",
+    projects: [
+      "РНПЦ «Мать и дитя» — медицинская автоматизированная система",
+      "РНПЦ «Трансплантации органов и тканей» — медицинская АИС",
+      "РНПЦ «Неврологии и нейрохирургии» — медицинская АИС",
+    ],
   },
-  { name: "IT и ритейл", clients: "EPAM, Евроторг" },
+  {
+    name: "IT и ритейл",
+    clients: "EPAM, Евроторг",
+    projects: [
+      "EPAM — инженерная инфраструктура ЦОД компании",
+    ],
+  },
 ];
 
 const VENDORS = [
-  { n: "Cisco", logo: "/vendors/cisco.png" },
+  { n: "Cisco", logo: "/vendors/cisco.svg" },
   { n: "IBM", logo: "/vendors/ibm.png" },
   { n: "Microsoft", logo: "/vendors/microsoft.jpg" },
-  { n: "Lenovo", logo: "/vendors/lenovo.jpg" },
-  { n: "Kaspersky", logo: "/vendors/kaspersky.png" },
+  { n: "Lenovo", logo: "/vendors/lenovo.svg" },
+  { n: "Kaspersky", logo: "/vendors/kaspersky.svg" },
   { n: "UserGate", logo: "/vendors/usergate.png" },
   { n: "Positive Technologies", logo: "/vendors/positive.png" },
-  { n: "Veeam", logo: "/vendors/veeam.jpg" },
-  { n: "VMware", logo: "/vendors/vmware.png" },
+  { n: "Veeam", logo: "/vendors/veeam.svg" },
+  { n: "VMware", logo: "/vendors/vmware.svg" },
   { n: "Eaton", logo: "/vendors/eaton.png" },
-  { n: "Rittal", logo: "/vendors/rittal.png" },
   { n: "CommScope", logo: "/vendors/commscope.png" },
+  { n: "Garda", logo: "/vendors/garda.png" },
 ];
 
 const REVIEWS: { quote: string; org: string; who: string; scan: string }[] = [
   {
     quote:
-      "Оборудование продемонстрировало своё соответствие установленным в Республике Беларусь нормам и требованиям информационной безопасности. Особенно удобной в использовании показала себя модель одновременной работы с несколькими ПАК «Цитадель».",
-    org: "Комитет гос. контроля РБ",
-    who: "заместитель директора Департамента, Франскевич В.И.",
+      "Применение ПАК „Цитадель“ позволило аттестовать информационную систему органов финансовых расследований Комитета государственного контроля Республики Беларусь, так как комплексы продемонстрировали свое соответствие установленным в Республике Беларусь нормам и требованиям информационной безопасности",
+    org: "ДФР Комитета госконтроля РБ",
+    who: "заместитель директора Департамента финансовых расследований, Франскевич В.И.",
     scan: "/scans/kgk.jpg",
   },
   {
     quote:
-      "Способствовали принятию оптимальных решений требованиям ТНПА в области строительства. Благодарим коллектив СП «Бевалекс» ООО за качественное исполнение проектных работ.",
+      "СП „Бевалекс“ ООО зарекомендовало себя как исполнительная и ответственная организация с высококвалифицированным персоналом, способная оперативно и качественно выполнять поставленные задачи. Благодарим коллектив за качественное исполнение проектных работ",
     org: "Белагропромбанк",
     who: "заместитель председателя правления, Подковыров В.И.",
     scan: "/scans/belapb.jpg",
   },
   {
     quote:
-      "Отмечаем СП «БЕВАЛЕКС» ООО как профессионального и надёжного партнёра по внедрению и сопровождению ПО СЭД «РЕКОРД».",
+      "Отмечаем СП „Бевалекс“ ООО как профессионального и надёжного партнёра по внедрению и сопровождению ПО СЭД „РЕКОРД“",
     org: "Национальная библиотека Беларуси",
     who: "заместитель директора, Касперович С.Б.",
     scan: "/scans/natlib.jpg",
@@ -101,7 +134,7 @@ const CASES: { id: string; client: string; scope: string; fact: string; tag: str
     id: "case-belapb",
     client: "Белагропромбанк",
     scope:
-      "Резервный ЦОД с комнатой физической безопасности — впервые в Беларуси. Питание 2N+1, класс защиты C60D по EN 1047-2, экранирование 13–65 дБ.",
+      "Резервный ЦОД с комнатой физической безопасности — впервые в Беларуси. Питание 2(N+1), охлаждение 2N, класс защиты C60D по EN 1047-2.",
     fact: "Первый ЦОД такого класса в стране",
     tag: "ЦОД",
   },
@@ -131,35 +164,42 @@ const CASES: { id: string; client: string; scope: string; fact: string; tag: str
   },
 ];
 
-const SERVICES: { t: string; d: string; link?: { href: string; l: string } }[] = [
+const SERVICES: { t: string; d: string; link?: { href: string; l: string }; topic?: string }[] = [
   {
     t: "ЦОД и инженерная инфраструктура",
     d: "Проектирование и строительство дата-центров, включая контейнерные решения. Собственный ЦОД «Поток» — SLA 99.9%.",
     link: { href: "#dc", l: "О ЦОД «Поток»" },
+    topic: "dc",
   },
   {
     t: "Защита информации",
-    d: "15 направлений: AV, SIEM, DLP, VPN, EDR, SOAR, NGFW, аттестация СЗИ. Лицензия ОАЦ при Президенте Республики Беларусь.",
+    d: "15 направлений: NGFW, SIEM, DLP, EDR, SOAR. Проектирование и аттестация систем защиты по требованиям ОАЦ, защита КИИ, собственный ПАК «Цитадель».",
+    topic: "security",
   },
   {
     t: "Сети передачи данных",
-    d: "Проектирование, монтаж и техническая поддержка сетевой инфраструктуры предприятия.",
+    d: "Корпоративные ЛВС и СКС, распределённые сети филиалов, промышленный Wi-Fi, оптические линии, балансировка трафика ЦОД.",
+    topic: "networks",
   },
   {
     t: "Вычислительные системы и СХД",
     d: "Серверы, системы хранения, виртуализация. Собственное производство — вычислительные системы и СХД БЕВАЛЕКС.",
+    topic: "compute",
   },
   {
     t: "Программные продукты",
     d: "СЭД «РЕКОРД», ЭЦП, ITSM-платформы (ServiceDesk, OpenText, SimpleOne), PostgreSQL.",
+    topic: "software",
   },
   {
     t: "Видеонаблюдение",
     d: "IP-камеры и AI-видеоаналитика, интеграция со СКУД. Проектирование и монтаж под ключ — более 500 объектов.",
+    topic: "video",
   },
   {
     t: "Техподдержка и сервис-центр",
-    d: "Около 70 специалистов уровня L1–L3 берут на себя эксплуатацию вашей инфраструктуры. Поддержка 8/5.",
+    d: "Собственный сервис-центр в Минске: выделенный инженер, подменный фонд оборудования, SLA на реакцию и восстановление.",
+    topic: "support",
   },
 ];
 
@@ -167,11 +207,11 @@ const STEPS = [
   { t: "Аудит", term: "1–2 дня", d: "Обследуем текущую инфраструктуру и процессы, фиксируем риски и узкие места." },
   { t: "Проектирование", term: "1–2 недели", d: "Готовим архитектуру и спецификацию решения под ваши требования и бюджет." },
   { t: "Внедрение", term: "2–8 недель", d: "Поставляем оборудование, разворачиваем и настраиваем системы, вводим в эксплуатацию." },
-  { t: "Сопровождение", term: "постоянно", d: "Поддерживаем работу 8/5 силами собственных специалистов L1–L3." },
+  { t: "Сопровождение", term: "постоянно", d: "Собственный сервис-центр в Минске: выделенный инженер, подменный фонд, SLA на реакцию." },
 ];
 
 const ASSISTANTS = [
-  { t: "Аналитик КП", d: "Снимает с продаж разбор и сравнение коммерческих предложений." },
+  { t: "Аналитик КП", d: "Сводит КП поставщиков в сравнительную таблицу: цены, сроки, отклонения от ТЗ." },
   { t: "Юрист", d: "Проверяет договоры и подсвечивает рисковые формулировки." },
   { t: "Тендер", d: "Разбирает тендерную документацию и готовит заготовки ответов." },
   { t: "Копирайтер", d: "Готовит черновики деловых и маркетинговых текстов." },
@@ -190,7 +230,19 @@ const FAQ = [
   },
   {
     q: "Что происходит после внедрения?",
-    a: "Систему сопровождают ~70 специалистов L1–L3 с выделенным инженером и собственным сервис-центром. Поддержка — 8/5, SLA на инфраструктуру — до 99.9%.",
+    a: "Систему сопровождает собственный сервис-центр в Минске: выделенный инженер, подменный фонд оборудования, SLA на инфраструктуру — до 99.9%.",
+  },
+  {
+    q: "Проводите ли вы аттестацию систем защиты информации?",
+    a: "Да. Проектируем и аттестуем СЗИ по требованиям ОАЦ при Президенте РБ, работаем с критической информационной инфраструктурой. Собственный ПАК «Цитадель» применялся для аттестации систем органов финансовых расследований КГК.",
+  },
+  {
+    q: "Где разворачиваются AI-ассистенты — документы не уходят во внешние облака?",
+    a: "Разворачиваем в закрытом контуре предприятия (on-premise) или в нашем ЦОД «Поток» на территории Беларуси. Документы не покидают периметр заказчика — для банков и госструктур это обязательное условие.",
+  },
+  {
+    q: "Чем заменяете оборудование и ПО ушедших западных вендоров?",
+    a: "Собственные серверы и СХД БЕВАЛЕКС производства Минска, реестровые СЗИ (ПАК «Цитадель», UserGate, Kaspersky), PostgreSQL, SimpleOne. Подбираем замещение под конкретный стек, а не «в среднем».",
   },
   {
     q: "Можно ли начать с пилота?",
@@ -217,7 +269,7 @@ const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Bevalex",
-  legalName: "СП ООО «Бевалекс»",
+  legalName: "СП «Бевалекс» ООО",
   url: "https://www.bevalex.by",
   logo: "https://www.bevalex.by/logo.svg",
   description:
@@ -357,59 +409,47 @@ export default function Home() {
           <div className="wrap">
             <div className="section-head">
               <h2 id="projects-title" className="h2">
-                Нам доверяют телеком, промышленность, банки и ритейл
+                Нам доверяют госсектор, банки, телеком и промышленность
               </h2>
               <p className="lead">
-                За 30 лет — более 1210 успешных проектов. Среди заказчиков — операторы связи,
-                промышленные холдинги, банки, IT-компании и розничные сети.
+                Среди заказчиков — госорганизации, банки, операторы связи,
+                промышленные холдинги, IT-компании и медицинские центры.
               </p>
             </div>
 
             <ul className="client-wall">
-              {CLIENT_WALL.map((c) => (
-                <li key={c.n}>
-                  {c.caseId ? (
-                    <a href={`#${c.caseId}`} className="client-cell client-cell-link">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
+              {CLIENT_WALL.map((c) => {
+                const inner = (
+                  <>
+                    {c.logo ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
                       <img className="client-wall-logo" src={BASE + c.logo} alt={c.n} loading="lazy" />
-                      <span className="client-wall-name">{c.n}</span>
-                      <span className="cc-more mono">кейс →</span>
-                    </a>
-                  ) : (
-                    <div className="client-cell">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img className="client-wall-logo" src={BASE + c.logo} alt={c.n} loading="lazy" />
-                      <span className="client-wall-name">{c.n}</span>
-                    </div>
-                  )}
-                </li>
-              ))}
+                    ) : (
+                      <span className="client-wall-wordmark">{c.n}</span>
+                    )}
+                    <span className="client-wall-tag mono">{c.tag}</span>
+                    {c.caseId && <span className="cc-more mono">кейс ↓</span>}
+                  </>
+                );
+                return (
+                  <li key={c.n}>
+                    {c.caseId ? (
+                      <a href={`#${c.caseId}`} className="client-cell client-cell-link">
+                        {inner}
+                      </a>
+                    ) : (
+                      <div className="client-cell">{inner}</div>
+                    )}
+                  </li>
+                );
+              })}
               <li className="client-cell client-cell-stat">
                 <b className="num">1210+</b>
                 <span>проектов за 30 лет</span>
               </li>
             </ul>
 
-            <dl className="ledger industries">
-              {INDUSTRIES.map((i) => (
-                <div className="ledger-row" key={i.name}>
-                  <dt>{i.name}</dt>
-                  <dd>
-                    <span className="ind-clients">{i.clients}</span>
-                    {i.href && (
-                      <a
-                        className="ind-link mono"
-                        href={i.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        проекты ↗
-                      </a>
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <IndustryDrawer industries={INDUSTRIES} />
             <article className="case-feature" id={CASES[0].id}>
               <div className="case-feature-main">
                 <span className="case-tag mono">ЦОД · впервые в Беларуси</span>
@@ -425,16 +465,24 @@ export default function Home() {
               </div>
               <dl className="case-feature-facts">
                 <div>
-                  <dt className="num">2N+1</dt>
+                  <dt className="num">2(N+1)</dt>
                   <dd>резервирование питания</dd>
                 </div>
                 <div>
+                  <dt className="num">2N</dt>
+                  <dd>резервирование охлаждения</dd>
+                </div>
+                <div>
                   <dt className="num">C60D</dt>
-                  <dd>класс защиты по EN 1047-2</dd>
+                  <dd>защита по EN 1047-2</dd>
                 </div>
                 <div>
                   <dt className="num">F120</dt>
-                  <dd>огнестойкость по DIN 4102-2</dd>
+                  <dd>огнестойкость DIN 4102-2</dd>
+                </div>
+                <div>
+                  <dt className="num">HDI-Gerling</dt>
+                  <dd>страховка рисков</dd>
                 </div>
               </dl>
             </article>
@@ -513,18 +561,25 @@ export default function Home() {
                   <h3 className="svc-title">{s.t}</h3>
                   <div className="svc-body">
                     <p>{s.d}</p>
-                    {s.link && (
-                      <a href={s.link.href} className="link">
-                        {s.link.l} →
-                      </a>
-                    )}
+                    <div className="svc-actions">
+                      {s.link && (
+                        <a href={s.link.href} className="link">
+                          {s.link.l} →
+                        </a>
+                      )}
+                      {s.topic && (
+                        <a href="#contact" className="link svc-cta" data-topic={s.topic}>
+                          Заявка →
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </li>
               ))}
             </ol>
 
             <p className="services-license">
-              Все направления — силами собственных специалистов: ~70 инженеров уровней L1–L3.
+              Лицензия ОАЦ при Президенте РБ · лицензия МВД · сертификаты СТБ ISO · собственное производство в Минске.
             </p>
           </div>
         </section>
@@ -539,6 +594,21 @@ export default function Home() {
               <p className="dc-sla-cap">
                 Гарантированная доступность по SLA
               </p>
+              <figure className="dc-figure">
+                <picture>
+                  <source
+                    media="(max-width: 640px)"
+                    srcSet={`${BASE}/images/server-infrastructure-mobile.webp`}
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={`${BASE}/images/server-infrastructure.webp`}
+                    alt="Схематичная иллюстрация серверных стоек в изометрии"
+                    loading="lazy"
+                  />
+                </picture>
+                <figcaption className="mono">Вычислительный контур и стойки ЦОД «Поток» (схема)</figcaption>
+              </figure>
             </div>
             <div>
               <h2 id="dc-title" className="h2">
@@ -563,7 +633,7 @@ export default function Home() {
                 </div>
                 <div>
                   <dt>Техническая поддержка</dt>
-                  <dd>8/5, уровни L1–L3</dd>
+                  <dd>уровни L1–L3 по регламентному SLA</dd>
                 </div>
                 <div>
                   <dt>Полный цикл</dt>
@@ -573,21 +643,6 @@ export default function Home() {
               <p className="dc-note">
                 Серверы и СХД БЕВАЛЕКС собираем сами — собственное производство в Минске.
               </p>
-              <figure className="dc-figure">
-                <picture>
-                  <source
-                    media="(max-width: 640px)"
-                    srcSet={`${BASE}/images/server-infrastructure-mobile.webp`}
-                  />
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={`${BASE}/images/server-infrastructure.webp`}
-                    alt="Схематичная иллюстрация серверных стоек в изометрии"
-                    loading="lazy"
-                  />
-                </picture>
-                <figcaption className="mono">Серверные стойки собственной сборки</figcaption>
-              </figure>
               <div style={{ marginTop: 40 }}>
                 <a href="#contact" className="btn btn-line">
                   Обсудить облачный проект
@@ -675,6 +730,15 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <div className="ai-cta">
+              <p>
+                Разворачиваем в закрытом контуре предприятия — on-premise, документы
+                не покидают ваш периметр.
+              </p>
+              <a href="#contact" className="link" data-topic="ai">
+                Запросить пилот на ваших документах →
+              </a>
+            </div>
           </div>
         </section>
 
@@ -808,7 +872,7 @@ export default function Home() {
             </div>
           </div>
           <div className="foot-bottom">
-            <span className="num">© 1996–2026 СП ООО «Бевалекс»</span>
+            <span className="num">© 1996–2026 СП «Бевалекс» ООО</span>
             <span>bevalex.by</span>
           </div>
         </div>
