@@ -1,3 +1,4 @@
+import Cycle from "@/components/Cycle";
 import IndustryDrawer from "@/components/IndustryDrawer";
 import LeadForm from "@/components/LeadForm";
 import MobileNav from "@/components/MobileNav";
@@ -13,14 +14,13 @@ const NAV = [
   { href: "#ai", label: "AI-ассистенты" },
 ];
 
-const CLIENT_WALL: { n: string; logo?: string; tag: string; caseId?: string }[] = [
-  { n: "Беларусбанк", logo: "/clients/belarusbank.svg", tag: "банк" },
-  { n: "Белагропромбанк", logo: "/clients/belapb.svg", tag: "банк", caseId: "case-belapb" },
-  { n: "Белтелеком", logo: "/clients/beltelecom.svg", tag: "телеком", caseId: "case-beltelecom" },
-  { n: "МТС", logo: "/clients/mts.svg", tag: "телеком" },
-  { n: "A1", logo: "/clients/a1.svg", tag: "телеком" },
-  { n: "Белоруснефть", logo: "/clients/belorusneft.svg", tag: "ТЭК" },
-  { n: "Беларуськалий", tag: "промышленность" },
+const CLIENT_STRIP: { n: string; logo: string; h: number; caseId?: string }[] = [
+  { n: "Беларусбанк", logo: "/clients/belarusbank.svg", h: 30 },
+  { n: "Белагропромбанк", logo: "/clients/belapb.svg", h: 34, caseId: "case-belapb" },
+  { n: "Белтелеком", logo: "/clients/beltelecom.svg", h: 26, caseId: "case-beltelecom" },
+  { n: "МТС", logo: "/clients/mts.svg", h: 26 },
+  { n: "A1", logo: "/clients/a1.svg", h: 32 },
+  { n: "Белоруснефть", logo: "/clients/belorusneft.svg", h: 30 },
 ];
 
 export type Industry = { name: string; clients: string; projects: string[] };
@@ -28,19 +28,20 @@ export type Industry = { name: string; clients: string; projects: string[] };
 const INDUSTRIES: Industry[] = [
   {
     name: "Госсектор",
-    clients: "Нацбанк РБ, Аппарат Совмина, Минобороны, КГБ, ГИАЦ",
+    clients: "Аппарат Совмина, Минобороны, Минсвязи, Минюст, КГБ, Генштаб ВС, Нацстатком, БУТБ",
     projects: [
       "Аппарат Совета Министров РБ — подсистемы делопроизводства и контроля исполнения поручений",
       "ИТ-инфраструктура единой системы госстатистики Республики Беларусь",
       "Электронные госзакупки — ИТ-инфраструктура центра обработки данных",
       "Белорусская универсальная товарная биржа — защита удостоверяющего центра",
       "ГИАЦ Минобразования — межсетевое экранирование Check Point NGFW",
+      "Нацстатком — мультимедийный конференц-зал",
       "Аналитическая система информационного агентства Вооружённых сил",
     ],
   },
   {
     name: "Банки и финансы",
-    clients: "Нацбанк РБ, Беларусбанк, Белинвестбанк, Сбер Банк",
+    clients: "Нацбанк РБ, Беларусбанк, Белагропромбанк, Белинвестбанк, МТБанк, Альфа-Банк, Банк БелВЭБ, БПС-Сбербанк",
     projects: [
       "Белагропромбанк — резервный ЦОД, СЭД, климат-контроль, потоки клиентов",
       "Белинвестбанк — SIEM, распределённая СЭД, Service Desk",
@@ -49,31 +50,35 @@ const INDUSTRIES: Industry[] = [
   },
   {
     name: "Телеком",
-    clients: "Белтелеком, МТС, A1",
+    clients: "Белтелеком, МТС, A1, Белпочта",
     projects: [
       "Белтелеком — AntiDDoS «Периметр» для национальной сети",
       "Белтелеком — ИТ-инфраструктура центра предоставления услуг",
-      "EPAM — инженерная инфраструктура центра обработки данных",
     ],
   },
   {
     name: "Промышленность",
-    clients: "Беларуськалий, Нафтан",
+    clients: "Беларуськалий, БЕЛАЗ, Нафтан, Белшина, Милавица, «Молоко»",
     projects: [
       "Милавица — система обеспечения информационной безопасности",
       "Санта Бремор — доменная структура группы компаний",
     ],
   },
   {
-    name: "Энергетика",
-    clients: "Белоруснефть",
+    name: "ТЭК и энергетика",
+    clients: "Белоруснефть, Белэнерго, Белтопгаз, ОДУ, Запад-Транснефтепродукт",
     projects: [
       "РУП «ОДУ» — инженерная инфраструктура серверной и модернизация ЛВС",
     ],
   },
   {
-    name: "Медицина",
-    clients: "РНПЦ",
+    name: "Транспорт",
+    clients: "Белорусская железная дорога, Белавиа",
+    projects: [],
+  },
+  {
+    name: "Медицина и здравоохранение",
+    clients: "Минздрав РБ, РНПЦ «Мать и дитя», РНПЦ трансплантации органов и тканей, РНПЦ неврологии и нейрохирургии",
     projects: [
       "РНПЦ «Мать и дитя» — медицинская автоматизированная система",
       "РНПЦ «Трансплантации органов и тканей» — медицинская АИС",
@@ -81,10 +86,15 @@ const INDUSTRIES: Industry[] = [
     ],
   },
   {
-    name: "IT и ритейл",
-    clients: "EPAM, Евроторг",
+    name: "Образование",
+    clients: "БГУИР, Военная академия РБ, БГЭУ",
+    projects: [],
+  },
+  {
+    name: "Частный бизнес и ритейл",
+    clients: "EPAM, Евроторг, «Патио», FENOX",
     projects: [
-      "EPAM — инженерная инфраструктура ЦОД компании",
+      "EPAM — инженерная инфраструктура центра обработки данных",
     ],
   },
 ];
@@ -349,13 +359,13 @@ export default function Home() {
           <div className="wrap">
             <div className="hero-grid">
               <div>
-                <p className="hero-eyebrow mono">Системный интегратор · Минск · с 1996 года</p>
                 <h1 id="hero-title" className="h1">
-                  ИТ-инфраструктура и защита данных для предприятий, которым нельзя останавливаться
+                  Системный интегратор для предприятий, которым нельзя останавливаться
                 </h1>
                 <p className="lead">
-                  Bevalex проектирует, строит и сопровождает отказоустойчивые контуры
-                  под ключ — для крупного бизнеса и госструктур Беларуси.
+                  С 1996 года Bevalex проектирует, внедряет и сопровождает <span className="nowrap">IT-инфраструктуру</span>,
+                  информационную безопасность и облачные сервисы для крупного бизнеса
+                  и госструктур Беларуси.
                 </p>
                 <div className="hero-ctas">
                   <a href="#contact" className="btn btn-primary">
@@ -365,36 +375,16 @@ export default function Home() {
                   <a href="#projects" className="btn btn-line">
                     Наши проекты
                   </a>
-                  <a href={`${BASE}/bevalex-presentation.pdf`} className="link hero-deck" download>
-                    Презентация PDF ↓
-                  </a>
                 </div>
-                <p className="hero-meta mono">
-                  Нацбанк РБ · Белтелеком · Аппарат Совмина · Беларуськалий · EPAM
+                <p className="hero-meta">
+                  Среди заказчиков — <strong>Нацбанк РБ, Белтелеком, Аппарат Совмина, Беларуськалий, EPAM</strong>
                 </p>
+                <a href={`${BASE}/bevalex-presentation.pdf`} className="link hero-deck" download>
+                  Скачать презентацию (PDF, 3,6 МБ) ↓
+                </a>
               </div>
               <div className="hero-figure">
-                <div className="passport" aria-label="Ключевые активы Bevalex">
-                  <p className="passport-kicker mono">инженерный паспорт</p>
-                  <dl className="passport-list">
-                    <div>
-                      <dt>Собственный ЦОД «Поток»</dt>
-                      <dd>SLA 99.9% — облако и colocation в Минске</dd>
-                    </div>
-                    <div>
-                      <dt>Лицензии ОАЦ и МВД</dt>
-                      <dd>аттестация СЗИ, защита КИИ, ПАК «Цитадель»</dd>
-                    </div>
-                    <div>
-                      <dt>Собственное производство</dt>
-                      <dd>серверы и СХД БЕВАЛЕКС белорусской сборки</dd>
-                    </div>
-                    <div>
-                      <dt>Корпоративный AI on-premise</dt>
-                      <dd>пилот на документах заказчика за 4–8 недель</dd>
-                    </div>
-                  </dl>
-                </div>
+                <Cycle />
               </div>
             </div>
 
@@ -436,38 +426,23 @@ export default function Home() {
               </p>
             </div>
 
-            <ul className="client-wall">
-              {CLIENT_WALL.map((c) => {
-                const inner = (
-                  <>
-                    {c.logo ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img className="client-wall-logo" src={BASE + c.logo} alt={c.n} loading="lazy" />
-                    ) : (
-                      <span className="client-wall-wordmark">{c.n}</span>
-                    )}
-                    <span className="client-wall-tag mono">{c.tag}</span>
-                    {c.caseId && <span className="cc-more mono">кейс ↓</span>}
-                  </>
-                );
-                return (
-                  <li key={c.n}>
-                    {c.caseId ? (
-                      <a href={`#${c.caseId}`} className="client-cell client-cell-link">
-                        {inner}
-                      </a>
-                    ) : (
-                      <div className="client-cell">{inner}</div>
-                    )}
-                  </li>
-                );
-              })}
-              <li className="client-cell client-cell-stat">
-                <b className="num">1210+</b>
-                <span>проектов за 30 лет</span>
-              </li>
+            <ul className="client-strip">
+              {CLIENT_STRIP.map((c) => (
+                <li key={c.n}>
+                  {c.caseId ? (
+                    <a href={`#${c.caseId}`} className="client-strip-link" title={`${c.n} — кейс`}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
+                    </a>
+                  ) : (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={BASE + c.logo} alt={c.n} loading="lazy" style={{ height: c.h }} />
+                  )}
+                </li>
+              ))}
             </ul>
 
+            <p className="industries-kicker mono">География проектов по отраслям</p>
             <IndustryDrawer industries={INDUSTRIES} />
             <article className="case-feature" id={CASES[0].id}>
               <div className="case-feature-main">

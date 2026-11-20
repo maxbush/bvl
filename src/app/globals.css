@@ -364,8 +364,8 @@ body {
 
 /* ---------- typography ---------- */
 .h1 {
-  font-size: clamp(2.2rem, 4.1vw, 3.85rem);
-  line-height: 1.04;
+  font-size: clamp(2.35rem, 5vw, 4.6rem);
+  line-height: 1.02;
   letter-spacing: -0.035em;
   font-weight: 500;
   text-wrap: balance;
@@ -408,13 +408,6 @@ body {
   gap: clamp(32px, 5vw, 80px);
   align-items: center;
 }
-.hero-eyebrow {
-  margin: 0 0 18px;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-ink);
-}
 .hero .lead {
   margin-top: 28px;
 }
@@ -422,20 +415,16 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  align-items: center;
   margin-top: 40px;
 }
-.hero-ctas .hero-deck {
-  margin-top: 0;
-  margin-left: 8px;
-  white-space: nowrap;
-}
 .hero-meta {
-  margin-top: 32px;
-  font-size: 12px;
-  letter-spacing: 0.05em;
+  margin-top: 28px;
+  font-size: 15px;
   color: var(--ink-3);
-  text-transform: uppercase;
+}
+.hero-meta strong {
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .stats {
@@ -1378,149 +1367,45 @@ body::before {
   }
 }
 
-/* ---------- step duration ---------- */
-.step-term {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  color: var(--accent-ink);
-  border: 1px solid var(--line);
-  padding: 3px 10px;
-}
-
-/* ---------- dc production note ---------- */
-.dc-note {
-  margin-top: 28px;
-  padding-top: 20px;
-  border-top: 1px solid var(--dark-line);
-  font-size: 15px;
-  color: var(--dark-muted);
-  max-width: 34em;
-}
-
-/* ---------- subtle blueprint grid in hero ---------- */
-.hero {
-  position: relative;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 72px 72px;
-  -webkit-mask-image: linear-gradient(160deg, rgba(0,0,0,0.4) 0%, transparent 55%);
-  mask-image: linear-gradient(160deg, rgba(0,0,0,0.4) 0%, transparent 55%);
-}
-.hero > .wrap {
-  position: relative;
-}
-
-/* ---------- client logo wall ---------- */
-.client-wall {
+/* ---------- client strip ---------- */
+.client-strip {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: clamp(28px, 4vw, 48px);
-  border-top: 1px solid var(--line-strong);
-  border-left: 1px solid var(--line);
-}
-.client-wall > li {
   display: flex;
-  min-height: 120px;
-}
-.client-cell {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 20px 14px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  position: relative;
+  gap: clamp(28px, 4.5vw, 64px);
+  margin-top: clamp(28px, 4vw, 44px);
 }
-.client-wall-logo {
-  height: 34px;
+.client-strip li {
+  display: flex;
+  align-items: center;
+}
+.client-strip img {
   width: auto;
-  max-width: 130px;
   object-fit: contain;
+  filter: grayscale(1) contrast(1.05);
+  opacity: 0.72;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
-.client-wall-name {
-  font-size: 13px;
-  color: var(--ink-3);
-  text-align: center;
-}
-a.client-cell {
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 0.25s ease;
-}
-a.client-cell:hover {
-  background: var(--paper-2, #f4f3ef);
-}
-.cc-more {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  font-size: 11px;
-  letter-spacing: 0.03em;
-  color: var(--accent-ink);
-  opacity: 0.7;
-  transition: opacity 0.25s ease;
-}
-a.client-cell:hover .cc-more {
+.client-strip li:hover img,
+.client-strip-link:focus-visible img {
+  filter: none;
   opacity: 1;
 }
-.client-wall-wordmark {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink);
+.client-strip-link {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted var(--ink-3);
+  padding-bottom: 6px;
+  text-decoration: none;
 }
-.client-wall-tag {
+
+.industries-kicker {
+  margin: clamp(48px, 6vw, 72px) 0 0;
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-3);
-}
-.client-cell-stat {
-  background: var(--ink);
-  color: var(--paper);
-}
-.client-cell-stat b {
-  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-.client-cell-stat span {
-  font-size: 13px;
-  color: var(--dark-muted);
-}
-.clients-rest {
-  margin-top: 20px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--ink-3);
-  max-width: 62em;
-}
-.clients-rest b {
-  color: var(--ink-2);
-  font-weight: 500;
-}
-.clients-rest a {
-  color: var(--ink-2);
-}
-@media (max-width: 760px) {
-  .client-wall {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 /* ---------- dc illustration ---------- */
@@ -1883,47 +1768,4 @@ a.client-cell:hover .cc-more {
 .drawer-foot p {
   font-size: 12px;
   color: var(--ink-3);
-}
-
-/* ---------- hero passport ---------- */
-.passport {
-  background: var(--ink);
-  color: var(--paper);
-  padding: clamp(28px, 3.5vw, 44px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.passport-kicker {
-  margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-ink);
-}
-.passport-list {
-  margin-top: 26px;
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
-}
-.passport-list > div {
-  display: grid;
-  grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
-  gap: 20px;
-  align-items: baseline;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.passport-list dt {
-  font-size: clamp(1.02rem, 1.3vw, 1.15rem);
-  font-weight: 500;
-  line-height: 1.3;
-}
-.passport-list dd {
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: rgba(243, 242, 238, 0.6);
-}
-@media (max-width: 520px) {
-  .passport-list > div {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
 }

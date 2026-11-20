@@ -3,6 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Industry } from "@/app/page";
 
+function plural(n: number): string {
+  const m = n % 10;
+  const h = n % 100;
+  if (m === 1 && h !== 11) return "проект";
+  if (m >= 2 && m <= 4 && (h < 12 || h > 14)) return "проекта";
+  return "проектов";
+}
+
 export default function IndustryDrawer({ industries }: { industries: Industry[] }) {
   const [open, setOpen] = useState<Industry | null>(null);
 
@@ -27,13 +35,15 @@ export default function IndustryDrawer({ industries }: { industries: Industry[] 
             <dt>{i.name}</dt>
             <dd>
               <span className="ind-clients">{i.clients}</span>
-              <button
-                type="button"
-                className="ind-link mono"
-                onClick={() => setOpen(i)}
-              >
-                проекты
-              </button>
+              {i.projects.length > 0 && (
+                <button
+                  type="button"
+                  className="ind-link mono"
+                  onClick={() => setOpen(i)}
+                >
+                  {i.projects.length} {plural(i.projects.length)} →
+                </button>
+              )}
             </dd>
           </div>
         ))}
